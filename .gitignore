@@ -1,0 +1,9 @@
+dist
+.yarninstall
+node_modules
+*.swp
+.idea
+*.tar.gz
+tests/reports
+.DS_Store
+mattermost-webapp.iml
