@@ -1,8 +1,5 @@
 'use strict';
 
-// fetch() polyfill for making API calls.
-require('whatwg-fetch');
-
 // using babel-polyfill
 // injects Object.assign()
 // also injects Promise, WeakMap, Array.from etc
