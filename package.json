@@ -138,6 +138,6 @@
       ]
     }
   },
-  "eslintIgnore": ["config/*"]
+  "eslintIgnore": ["config/*", "scripts/*"]
 
 }
