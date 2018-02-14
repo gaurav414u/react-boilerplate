@@ -16,6 +16,19 @@ require('../config/env');
 
 const fs = require('fs');
 const chalk = require('chalk');
+
+const argv = process.argv.slice(2);
+// Make sure client receives REACT_APP_API_URL
+if (argv.indexOf("--using_mock_server") >= 0 ) {
+  // We are using a mock server, hence use that as REACT_APP_API_URL
+  const serverPort = process.env.MOCK_SERVER_PORT || 5000
+  process.env.REACT_APP_API_URL = "http://localhost:"+serverPort+"/api"
+} else {
+  console.log('--------------------------------------------------------------------------------')
+  console.log(chalk.cyan('Build will use ' + chalk.green(process.env.REACT_APP_API_URL) + ' as the API URL'))
+  console.log('--------------------------------------------------------------------------------')
+}
+
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');

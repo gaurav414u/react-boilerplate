@@ -1,0 +1,10 @@
+{
+  "name": "react-boilerplat-mock-server",
+  "version": "1.0.0",
+  "scripts": {
+    "servre": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}

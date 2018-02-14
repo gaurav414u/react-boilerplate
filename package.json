@@ -47,11 +47,14 @@
     "babel-polyfill": "6.16.0",
     "babel-preset-es2015": "6.22.0",
     "babel-preset-react": "6.22.0",
-    "babel-preset-stage-0": "6.16.0"
+    "babel-preset-stage-0": "6.16.0",
+    "cross-env": "^5.1.3",
+    "concurrently": "^3.5.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start_mock": "concurrently --kill-others-on-fail \"cd mockserver && npm run start\" \"node scripts/start.js --using_mock_server\"",
+    "start": "cross-env --REACT_APP_API_URL=http://localhost:5000/api node scripts/start.js",
+    "build": "cross-env --REACT_APP_API_URL=https://yourwebsite.com/api node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
@@ -138,6 +141,8 @@
       ]
     }
   },
-  "eslintIgnore": ["config/*", "scripts/*"]
-
+  "eslintIgnore": [
+    "config/*",
+    "scripts/*"
+  ]
 }

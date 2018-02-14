@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import logo from '../images/logo.svg'
 import '../styles/home.css'
+console.log(process.env)
 
 class Home extends Component {
   render() {

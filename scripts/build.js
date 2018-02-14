@@ -40,6 +40,15 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
+// crash if REACT_APP_API_URL env variable is not present
+if (process.env.REACT_APP_API_URL == null || process.env.REACT_APP_API_URL.length == 0) {
+  console.error(chalk.red('REACT_APP_API_URL env variable not set'))
+  process.exit(1);
+}
+console.log('--------------------------------------------------------------------------------')
+console.log(chalk.cyan('Build will use '+ chalk.green(process.env.REACT_APP_API_URL)+ ' as the API URL'))
+console.log('--------------------------------------------------------------------------------')
+
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
