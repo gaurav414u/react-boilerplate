@@ -94,6 +94,48 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app"
+    ],
+    "rules": {
+      "keyword-spacing": [
+        2,
+        {
+          "overrides": {
+            "catch": {
+              "after": true
+            },
+            "do": {
+              "after": true
+            },
+            "else": {
+              "after": true
+            },
+            "for": {
+              "after": true
+            },
+            "if": {
+              "after": true
+            },
+            "return": {
+              "after": true
+            },
+            "switch": {
+              "after": true
+            },
+            "try": {
+              "after": true
+            },
+            "while": {
+              "after": true
+            }
+          }
+        }
+      ],
+      "semi": [
+        2,
+        "never"
+      ]
+    }
   }
 }
