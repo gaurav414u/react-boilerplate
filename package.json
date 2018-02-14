@@ -137,5 +137,7 @@
         "never"
       ]
     }
-  }
+  },
+  "eslintIgnore": ["config/*"]
+
 }
