@@ -9,7 +9,7 @@ class Home extends Component {
     this.state = this.getUpdatedState()
   }
 
-  getUpdatedState() {
+  getUpdatedState = () => {
     return {
       logins: LoginStore.getState()
     }
@@ -24,7 +24,7 @@ class Home extends Component {
   }
 
   onChange = () => {
-    this.setState(this.getUpdatedState)
+    this.setState(this.getUpdatedState())
   }
 
   render() {
@@ -38,6 +38,9 @@ class Home extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
           <span style={{display:'block'}}>
             <code>Value: {this.state.logins.value}</code>
+          </span>
+          <span style={{display:'block'}}>
+            <code>ResponseFromServer: {this.state.logins.pingRes}</code>
           </span>
         </p>
       </div>

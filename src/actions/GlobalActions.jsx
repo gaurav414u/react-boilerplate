@@ -4,7 +4,9 @@ class GlobalActions {
     constructor() {
         this.generateActions(
             'inc',
-            'dec'
+            'dec',
+            'pingRequest',
+            'pingResponse'
         )
     }
 }
