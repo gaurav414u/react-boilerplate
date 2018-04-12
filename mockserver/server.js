@@ -1,23 +1,16 @@
-const express = require('express');
+const express = require('express')
+const app = express()
+const port = process.env.MOCK_SERVER_PORT || 5000
 
-const cors = require('cors');
-const app = express();
-const port = process.env.MOCK_SERVER_PORT || 5000;
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  res.header("Access-Control-Allow-Headers", "token, email, CLIENT_VER, engine_ver, oem, partner")
+  next()
+})
 
-var whitelist = ['http://localhost:3000'];
+app.get('/api/ping' ,(req, res) => {
+  res.send({ message: 'Pong From Express' })
+})
 
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}
-
-app.get('/api/ping',cors(corsOptions) ,(req, res) => {
-  res.send({ express: 'Pong From Express' });
-});
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`))
