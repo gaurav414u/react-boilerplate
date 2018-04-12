@@ -1,18 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-
 import './styles/index.css'
+import Main from './components/Main'
 
 // Disabling service worker for now
 // import registerServiceWorker from './registerServiceWorker';
 
-import Routes from './Routes'
-
 ReactDOM.render(
-    <BrowserRouter>
-        {Routes.routes}
-    </BrowserRouter>
+  <Main />
     ,
     document.getElementById('root')
 )
