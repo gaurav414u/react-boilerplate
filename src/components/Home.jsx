@@ -1,32 +1,25 @@
 import React, { Component } from 'react'
 import logo from '../images/logo.svg'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import '../styles/home.css'
-import LoginStore from '../stores/LoginStore'
+
+import * as GlobalActions from '../actions/GlobalActions'
+window.GlobalActions = GlobalActions
+
+const mapStateToProps = state => ({
+  count: state.counter.count,
+  pingRes: state.ping.pingResponse,
+  working: state.ping.working
+})
+
+function mapDispatchToProps(dispatch) {
+  return {
+    globalActions: bindActionCreators(GlobalActions, dispatch)
+  }
+}
 
 class Home extends Component {
-  constructor() {
-    super()
-    this.state = this.getUpdatedState()
-  }
-
-  getUpdatedState = () => {
-    return {
-      logins: LoginStore.getState()
-    }
-  }
-
-  componentDidMount() {
-    LoginStore.listen(this.onChange)
-  }
-
-  componentWillUnmount() {
-    LoginStore.unlisten(this.onChange)
-  }
-
-  onChange = () => {
-    this.setState(this.getUpdatedState())
-  }
-
   render() {
     return (
       <div className="App">
@@ -36,11 +29,24 @@ class Home extends Component {
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-          <span style={{display:'block'}}>
-            <code>Value: {this.state.logins.value}</code>
+          <span style={{ display: 'block' }}>
+            <code>Value: {this.props.count}</code>
           </span>
-          <span style={{display:'block'}}>
-            <code>ResponseFromServer: {this.state.logins.pingRes}</code>
+          <button onClick={this.props.globalActions.increaseCount}>
+            Increase count
+          </button>
+          <button onClick={this.props.globalActions.decreaseCount}>
+            Decrease count
+          </button>
+          <br />
+          <button onClick={this.props.globalActions.initiatePingRequest}>
+            Ping
+          </button>
+          <br/>
+          {this.props.working ? "loading" : ""}
+          <br/>
+          <span style={{ display: 'block' }}>
+            <code>ResponseFromServer: {JSON.stringify(this.props.pingRes)}</code>
           </span>
         </p>
       </div>
@@ -48,4 +54,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

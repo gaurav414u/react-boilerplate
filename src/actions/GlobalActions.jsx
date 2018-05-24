@@ -1,14 +1,26 @@
-import FluxApp from '../utils/FluxApp'
+import { GlobalActionTypes } from '../utils/Constants'
 
-class GlobalActions {
-    constructor() {
-        this.generateActions(
-            'inc',
-            'dec',
-            'pingRequest',
-            'pingResponse'
-        )
-    }
+export function increaseCount() {
+  return {
+    type: GlobalActionTypes.INC
+  }
 }
 
-export default FluxApp.instance.createActions(GlobalActions)
+export function decreaseCount() {
+  return {
+    type: GlobalActionTypes.DEC
+  }
+}
+
+export function initiatePingRequest() {
+  return {
+    type: GlobalActionTypes.PING_REQUEST
+  }
+}
+
+export function onPingResponse(response) {
+  return {
+    type: GlobalActionTypes.PING_RESPONSE,
+    data: response
+  }
+}
